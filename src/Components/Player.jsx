@@ -20,7 +20,7 @@ const Player = ({ name, symbol }) => {
               
                 <span className="player-symbol">{symbol}</span>
             </span>
-            <button onClick={() => { setIsEdit(!isEdit) }}>{!isEdit ? "Edit" : "Save"}</button>
+            <button onClick={() => { setIsEdit(x => !x) }}>{!isEdit ? "Edit" : "Save"}</button>
         </li>
     );
 }
