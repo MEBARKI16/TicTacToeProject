@@ -1,5 +1,5 @@
 import { useState } from "react";
-const Player = ({ name, symbol }) => {
+const Player = ({ name, symbol, isActive }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [nom, setNom] = useState(name)
     const HandleChange = (e) => {
@@ -7,7 +7,7 @@ const Player = ({ name, symbol }) => {
         setNom(e.target.value)
     }
     return (
-        <li>
+        <li className={isActive? 'active' : undefined}>
             <span className="player">
                 
                     {

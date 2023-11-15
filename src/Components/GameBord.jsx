@@ -4,14 +4,16 @@ const grille = [
     [null, null, null],
     [null, null, null]
 ];
-const GameBord = () => {
+const GameBord = ({handleChangePlayer,playerActive}) => {
     const [gr, setGr] = useState(grille);
     const handleClick = (row, col) => {
         setGr(x => {
             const fakeGr = [...x];
-            fakeGr[row][col] = 'X';
+            fakeGr[row][col] = playerActive;
             return fakeGr;
-        })
+        });console.log(playerActive);
+        handleChangePlayer();
+        
     }
     return (
         <ol id="game-board">
