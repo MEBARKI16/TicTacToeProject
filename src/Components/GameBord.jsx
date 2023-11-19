@@ -19,7 +19,7 @@ const GameBord = ({ handleChangePlayer, clickInfo }) => {
                         <ol>
                             {row.map((col, colIndex) => (
                                 <li key={colIndex}>
-                                    <button onClick={() => { handleChangePlayer(rowIndex, colIndex) }}>{col}</button>
+                                    <button disabled={col !== null} onClick={() => { handleChangePlayer(rowIndex, colIndex) }}>{col}</button>
                                 </li>
                             ))}
                         </ol>
