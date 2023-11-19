@@ -2,16 +2,19 @@ import GameBord from "./Components/GameBord"
 import Log from "./Components/Log";
 import Player from "./Components/Player"
 import { useState } from "react"
+const DeriveActivePlayer = (tab) => {
+  let player = 'X'
+  if (tab.length > 0 && tab[0].player === 'X') {
+    player = 'O';
+  }
+  return player;
+}
 function App() {
-  const [playerActive, setPlayerActive] = useState('X');
-  const [clickInfo, setClickInfo] = useState([])
+  const [clickInfo, setClickInfo] = useState([]);
+  const playerActive = DeriveActivePlayer(clickInfo);
   const handleChangePlayer = (row, col) => {
-    setPlayerActive(x => x === 'X' ? 'O' : 'X')
     setClickInfo(prev => {
-      let player = 'X'
-      if (clickInfo.length > 0 && clickInfo[0].player === 'X') {
-        player = 'O';
-      }
+      let player = DeriveActivePlayer(prev);
       let info = [{
         position: { row: row, col: col },
         player: player
