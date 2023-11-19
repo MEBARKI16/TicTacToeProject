@@ -1,6 +1,8 @@
-const Log = () => {
+const Log = ({ clickInfo }) => {
     return (
-        <h1>Log</h1>
+        <ol id="log">
+            {clickInfo.map(info => <li key={`${info.position.row}${info.position.col}`}>{info.player} selected {info.position.row},{info.position.col}</li>)}
+        </ol>
     );
 }
 export default Log;

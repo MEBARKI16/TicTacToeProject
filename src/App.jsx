@@ -29,7 +29,7 @@ function App() {
         </ol>
         <GameBord handleChangePlayer={handleChangePlayer} clickInfo={clickInfo} />
       </div>
-      <Log />
+      <Log clickInfo={clickInfo} />
     </main>
   )
 }
