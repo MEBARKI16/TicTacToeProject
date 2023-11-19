@@ -2,6 +2,7 @@ import GameBord from "./Components/GameBord"
 import Log from "./Components/Log";
 import Player from "./Components/Player"
 import { useState } from "react"
+import { WINNING_COMBINATIONS } from './WINNING_COMBINATIONS'
 const DeriveActivePlayer = (tab) => {
   let player = 'X'
   if (tab.length > 0 && tab[0].player === 'X') {
