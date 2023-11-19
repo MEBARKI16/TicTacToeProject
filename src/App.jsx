@@ -16,6 +16,7 @@ function App() {
         position: { row: row, col: col },
         player: player
       }, ...prev];
+      console.log(info)
       return info;
     })
   }
@@ -26,7 +27,7 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={playerActive === 'X'} />
           <Player name="Player 2" symbol="O" isActive={playerActive === 'O'} />
         </ol>
-        <GameBord handleChangePlayer={handleChangePlayer} />
+        <GameBord handleChangePlayer={handleChangePlayer} clickInfo={clickInfo} />
       </div>
       <Log />
     </main>

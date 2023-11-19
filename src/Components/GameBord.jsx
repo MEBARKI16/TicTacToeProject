@@ -4,8 +4,13 @@ const grille = [
     [null, null, null],
     [null, null, null]
 ];
-const GameBord = ({ handleChangePlayer }) => {
-
+const GameBord = ({ handleChangePlayer, clickInfo }) => {
+    const gr = grille;
+    for (const info of clickInfo) {
+        const { position, player } = info
+        const { row, col } = position
+        grille[row][col] = player
+    };
     return (
         <ol id="game-board">
             {
@@ -14,7 +19,7 @@ const GameBord = ({ handleChangePlayer }) => {
                         <ol>
                             {row.map((col, colIndex) => (
                                 <li key={colIndex}>
-                                    <button onClick={() => { handleClick(rowIndex, colIndex) }}>{col}</button>
+                                    <button onClick={() => { handleChangePlayer(rowIndex, colIndex) }}>{col}</button>
                                 </li>
                             ))}
                         </ol>
