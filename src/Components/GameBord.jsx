@@ -1,20 +1,11 @@
-import { useState } from "react";
+
 const grille = [
     [null, null, null],
     [null, null, null],
     [null, null, null]
 ];
-const GameBord = ({handleChangePlayer,playerActive}) => {
-    const [gr, setGr] = useState(grille);
-    const handleClick = (row, col) => {
-        setGr(x => {
-            const fakeGr = [...x];
-            fakeGr[row][col] = playerActive;
-            return fakeGr;
-        });console.log(playerActive);
-        handleChangePlayer();
-        
-    }
+const GameBord = ({ handleChangePlayer }) => {
+
     return (
         <ol id="game-board">
             {
