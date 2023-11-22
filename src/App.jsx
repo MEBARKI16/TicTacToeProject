@@ -1,5 +1,6 @@
 import GameBord from "./Components/GameBord"
 import Log from "./Components/Log";
+import Gameover from "./Components/Gameover";
 import Player from "./Components/Player"
 import { useState } from "react"
 import { WINNING_COMBINATIONS } from './WINNING_COMBINATIONS'
@@ -33,6 +34,7 @@ function App() {
       winner = first;
     }
   }
+  let isDraw = clickInfo.length === 9 && !winner;
   const playerActive = DeriveActivePlayer(clickInfo);
   const handleChangePlayer = (row, col) => {
     setClickInfo(prev => {
@@ -52,7 +54,7 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={playerActive === 'X'} />
           <Player name="Player 2" symbol="O" isActive={playerActive === 'O'} />
         </ol>
-        {winner && <p>Winner : {winner}!</p>}
+        {(winner || isDraw) && <Gameover winner={winner} />}
         <GameBord handleChangePlayer={handleChangePlayer} gr={gr} />
       </div>
       <Log clickInfo={clickInfo} />
