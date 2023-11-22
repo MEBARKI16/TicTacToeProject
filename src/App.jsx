@@ -19,6 +19,7 @@ const DeriveActivePlayer = (tab) => {
 }
 function App() {
   const [clickInfo, setClickInfo] = useState([]);
+  const [player, setPlayer] = useState({ 'X': 'player 1', 'O': 'player 2' });
   const gr = [...grille.map(x => [...x])];
   let winner;
   for (const info of clickInfo) {
@@ -43,21 +44,23 @@ function App() {
         position: { row: row, col: col },
         player: player
       }, ...prev];
-      console.log(info)
       return info;
     })
   }
   const HandleReset = () => {
     setClickInfo(() => { return [] });
   }
+  const HandleChangeName = (ply, value) => {
+    setPlayer(player => ({ ...player, [ply]: [value] }));
+  }
   return (
     <main>
       <div id="game-container">
         <ol id="players" className="highlight-player">
-          <Player name="Player 1" symbol="X" isActive={playerActive === 'X'} />
-          <Player name="Player 2" symbol="O" isActive={playerActive === 'O'} />
+          <Player HandleChangeName={HandleChangeName} name="Player 1" symbol="X" isActive={playerActive === 'X'} />
+          <Player HandleChangeName={HandleChangeName} name="Player 2" symbol="O" isActive={playerActive === 'O'} />
         </ol>
-        {(winner || isDraw) && <Gameover winner={winner} HandleReset={HandleReset} />}
+        {(winner || isDraw) && <Gameover winner={player[winner]} HandleReset={HandleReset} />}
         <GameBord handleChangePlayer={handleChangePlayer} gr={gr} />
       </div>
       <Log clickInfo={clickInfo} />

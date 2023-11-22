@@ -1,5 +1,5 @@
 import { useState } from "react";
-const Player = ({ name, symbol, isActive }) => {
+const Player = ({ name, symbol, isActive, HandleChangeName }) => {
     const [isEdit, setIsEdit] = useState(false);
     const [nom, setNom] = useState(name)
     const HandleChange = (e) => {
@@ -7,20 +7,20 @@ const Player = ({ name, symbol, isActive }) => {
         setNom(e.target.value)
     }
     return (
-        <li className={isActive? 'active' : undefined}>
+        <li className={isActive ? 'active' : undefined}>
             <span className="player">
-                
-                    {
-                        !isEdit ?
-                       <span className="player-name">{nom}</span>
-                            :
-                            <input type="text" value={nom} onChange={HandleChange} />
-                    }
 
-              
+                {
+                    !isEdit ?
+                        <span className="player-name">{nom}</span>
+                        :
+                        <input type="text" value={nom} onChange={HandleChange} />
+                }
+
+
                 <span className="player-symbol">{symbol}</span>
             </span>
-            <button onClick={() => { setIsEdit(x => !x) }}>{!isEdit ? "Edit" : "Save"}</button>
+            <button onClick={() => { setIsEdit(x => !x); HandleChangeName(symbol, nom) }}>{!isEdit ? "Edit" : "Save"}</button>
         </li>
     );
 }
