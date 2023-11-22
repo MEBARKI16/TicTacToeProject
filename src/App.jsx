@@ -3,6 +3,12 @@ import Log from "./Components/Log";
 import Player from "./Components/Player"
 import { useState } from "react"
 import { WINNING_COMBINATIONS } from './WINNING_COMBINATIONS'
+
+const grille = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null]
+];
 const DeriveActivePlayer = (tab) => {
   let player = 'X'
   if (tab.length > 0 && tab[0].player === 'X') {
@@ -12,6 +18,12 @@ const DeriveActivePlayer = (tab) => {
 }
 function App() {
   const [clickInfo, setClickInfo] = useState([]);
+  const gr = grille;
+  for (const info of clickInfo) {
+      const { position, player } = info
+      const { row, col } = position
+      grille[row][col] = player
+  };
   const playerActive = DeriveActivePlayer(clickInfo);
   const handleChangePlayer = (row, col) => {
     setClickInfo(prev => {
@@ -31,7 +43,7 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={playerActive === 'X'} />
           <Player name="Player 2" symbol="O" isActive={playerActive === 'O'} />
         </ol>
-        <GameBord handleChangePlayer={handleChangePlayer} clickInfo={clickInfo} />
+        <GameBord handleChangePlayer={handleChangePlayer} gr={gr} />
       </div>
       <Log clickInfo={clickInfo} />
     </main>

@@ -1,16 +1,4 @@
-
-const grille = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]
-];
-const GameBord = ({ handleChangePlayer, clickInfo }) => {
-    const gr = grille;
-    for (const info of clickInfo) {
-        const { position, player } = info
-        const { row, col } = position
-        grille[row][col] = player
-    };
+const GameBord = ({ handleChangePlayer, gr }) => {
     return (
         <ol id="game-board">
             {
